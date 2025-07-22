@@ -1,0 +1,399 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --bg-primary: #f0f2f5;
+    --bg-secondary: #ffffff;
+    --text-primary: #2c3e50;
+    --text-secondary: #7f8c8d;
+    --accent: #3498db;
+    --shadow: rgba(0, 0, 0, 0.1);
+    --border: rgba(255, 255, 255, 0.2);
+    --glass-bg: rgba(255, 255, 255, 0.25);
+    --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+[data-theme="dark"] {
+    --bg-primary: #0a0a0a;
+    --bg-secondary: #1a1a1a;
+    --text-primary: #ffffff;
+    --text-secondary: #cccccc;
+    --accent: #1e507a;
+    --shadow: rgba(0, 0, 0, 0.5);
+    --border: rgba(255, 255, 255, 0.05);
+    --glass-bg: rgba(255, 255, 255, 0.05);
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, var(--bg-primary) 0%, var(--bg-secondary) 100%);
+    min-height: 100vh;
+    color: var(--text-primary);
+    transition: var(--transition);
+    overflow-x: hidden;
+}
+
+body[data-theme="dark"] {
+    background: #000;
+    color: #fff;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 40px;
+    padding: 20px 0;
+}
+
+.title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    background: linear-gradient(135deg, var(--accent), #9b59b6);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    animation: fadeInUp 0.8s ease-out;
+}
+
+.controls {
+    display: flex;
+    gap: 15px;
+}
+
+.control-btn {
+    background: var(--glass-bg);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 12px 20px;
+    color: var(--text-primary);
+    font-weight: 600;
+    cursor: pointer;
+    transition: transform 0.18s cubic-bezier(0.4,0,0.2,1), box-shadow 0.18s, background 0.18s, color 0.18s;
+    will-change: transform;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    box-shadow: 0 4px 15px var(--shadow);
+}
+
+.control-btn:hover {
+    transform: scale(1.10);
+    box-shadow: 0 12px 32px var(--shadow);
+    background: var(--accent);
+    color: white;
+}
+
+.control-btn:active {
+    transform: scale(0.96);
+    box-shadow: 0 4px 10px var(--shadow);
+}
+
+.clock-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 25px;
+    flex: 1;
+    animation: fadeIn 1s ease-out 0.3s both;
+}
+
+.clock-card {
+    position: relative;
+    overflow: hidden;
+    background: var(--glass-bg);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    padding: 30px;
+    text-align: center;
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    box-shadow: 0 8px 32px var(--shadow);
+    transition: var(--transition);
+    animation: slideInUp 0.6s ease-out both;
+    cursor: pointer;
+}
+
+.clock-card::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-size: cover;
+    background-position: center;
+    opacity: 0.13;
+    z-index: 0;
+    pointer-events: none;
+}
+
+/* Şehirlere özel arka planlar */
+.city-bg-istanbul::before {
+    /* Galata Kulesi ve şehir merkezi */
+    background-image: url('https://media.istockphoto.com/id/1499025854/tr/foto%C4%9Fraf/touristic-sightseeing-ships-in-istanbul-city-turkey.jpg?s=612x612&w=0&k=20&c=DACaBiPteLi0jkW2ODo7ehYWNhIs178w4XZhD0UODVc=');
+    opacity: 0.30;
+}
+.city-bg-tokyo::before {
+    /* Tokyo Tower ve şehir merkezi */
+    background-image: url('https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=800&q=80');
+    opacity: 0.30;
+}
+.city-bg-newyork::before {
+    /* Empire State ve Manhattan */
+    background-image: url('https://assets.enuygun.com/media/lib/570x400/uploads/image/4081.jpeg');
+    opacity: 0.30;
+}
+.city-bg-london::before {
+    /* London Eye ve Thames Nehri */
+    background-image: url('https://www.visitlondon.com/-/media/images/london/visit/general-london/london-panoramic-1280x720.jpg?rev=7c120e60feb14b52be2d1cfb71f54d25&mw=800&hash=E5BAE754E72DDA45F26625BAA7BE6678');
+    opacity: 0.30;
+}
+.city-bg-paris::before {
+    /* Eyfel Kulesi ve şehir merkezi */
+    background-image: url('https://media.istockphoto.com/id/1498516775/tr/foto%C4%9Fraf/the-eiffel-tower-in-paris-france-at-sunset.jpg?s=612x612&w=0&k=20&c=lP6TDW7Jj0iIkgVEpjAAF9oG8BwsAFsjhjN9aD9VaEA=');
+    opacity: 0.30;
+}
+.city-bg-sydney::before {
+    /* Sydney Opera House ve liman */
+    background-image: url('https://res.klook.com/images/fl_lossy.progressive,q_65/c_fill,w_1200,h_630/activities/qrt1zjeqpyhfvx6lngav/SydneyCityDayTour-KlookUnitedKingdom.jpg');
+    opacity: 0.30;
+}
+
+/* Kart içeriğinin üstte kalması için */
+.clock-card > * {
+    position: relative;
+    z-index: 1;
+}
+
+.clock-card:hover {
+transform: scale(1.06);
+box-shadow: 0 15px 40px var(--shadow);
+z-index: 2;
+}
+
+.clock-card:nth-child(1) { animation-delay: 0.1s; }
+.clock-card:nth-child(2) { animation-delay: 0.2s; }
+.clock-card:nth-child(3) { animation-delay: 0.3s; }
+.clock-card:nth-child(4) { animation-delay: 0.4s; }
+.clock-card:nth-child(5) { animation-delay: 0.5s; }
+.clock-card:nth-child(6) { animation-delay: 0.6s; }
+.clock-card:nth-child(7) { animation-delay: 0.7s; }
+.clock-card:nth-child(8) { animation-delay: 0.8s; }
+
+.clock-card:hover::before {
+    /* Görseli kaydırma veya gizleme yok, sadece opacity ve büyüme animasyonu kalacak */
+    opacity: 0.30;
+    transition: opacity 0.3s;
+}
+
+.clock-card:hover {
+    transform: translateY(-5px) scale(1.02);
+    box-shadow: 0 15px 40px var(--shadow);
+}
+
+.weather-emoji {
+    font-size: 3rem;
+    margin-bottom: 15px;
+    display: block;
+    animation: bounce 2s infinite;
+}
+
+.city-name {
+    font-size: 1.4rem;
+    font-weight: 600;
+    margin-bottom: 10px;
+    color: var(--text-primary);
+}
+
+.time-display {
+    font-size: 2.2rem;
+    font-weight: 700;
+    margin-bottom: 8px;
+    color: var(--accent);
+    font-family: 'Roboto Mono', 'Courier New', monospace;
+    letter-spacing: 1px;
+}
+
+.date-display {
+    font-size: 1rem;
+    color: var(--text-secondary);
+    font-weight: 500;
+}
+
+.timezone-info {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    margin-top: 8px;
+    opacity: 0.8;
+}
+
+.weather-desc {
+    font-size: 1rem;
+    color: var(--text-secondary);
+    margin-bottom: 8px;
+    font-style: italic;
+}
+
+/* Animations */
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes slideInUp {
+    from {
+        opacity: 0;
+        transform: translateY(50px) scale(0.9);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+@keyframes bounce {
+    0%, 20%, 50%, 80%, 100% {
+        transform: translateY(0);
+    }
+    40% {
+        transform: translateY(-10px);
+    }
+    60% {
+        transform: translateY(-5px);
+    }
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
+}
+
+.time-display.updating {
+    animation: pulse 0.3s ease-in-out;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .container {
+        padding: 15px;
+    }
+    
+    .header {
+        flex-direction: column;
+        gap: 20px;
+        text-align: center;
+    }
+    
+    .title {
+        font-size: 2rem;
+    }
+    
+    .clock-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+    
+    .clock-card {
+        padding: 25px 20px;
+    }
+    
+    .time-display {
+        font-size: 1.8rem;
+    }
+    
+    .weather-emoji {
+        font-size: 2.5rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .title {
+        font-size: 1.8rem;
+    }
+    
+    .control-btn {
+        padding: 10px 16px;
+        font-size: 0.9rem;
+    }
+    
+    .clock-card {
+        padding: 20px 15px;
+    }
+    
+    .time-display {
+        font-size: 1.6rem;
+    }
+    
+    .city-name {
+        font-size: 1.2rem;
+    }
+}
+
+/* Koyu tema için daha koyu neumorphism efektleri */
+[data-theme="dark"] .clock-card {
+    background: #111111;
+    box-shadow: 
+        8px 8px 16px rgba(0, 0, 0, 0.8),
+        -8px -8px 16px rgba(255, 255, 255, 0.02);
+}
+
+[data-theme="dark"] .control-btn {
+    background: #111111;
+    box-shadow: 
+        4px 4px 8px rgba(0, 0, 0, 0.8),
+        -4px -4px 8px rgba(255, 255, 255, 0.02);
+}
+
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 999;
+    left: 0; top: 0; width: 100%; height: 100%;
+    overflow: auto;
+    background: rgba(0,0,0,0.5);
+}
+.modal-content {
+    background: #fff;
+    margin: 10% auto;
+    padding: 20px;
+    border-radius: 12px;
+    width: 90%;
+    max-width: 400px;
+    position: relative;
+}
+.close {
+    position: absolute;
+    right: 16px;
+    top: 8px;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+}
+[data-theme="dark"] .modal-content {
+    background: #222;
+    color: #fff;
+}
+
+
+
+
