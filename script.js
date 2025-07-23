@@ -234,10 +234,14 @@ class WorldClock {
             case 'Drizzle': return '🌦️';
             case 'Thunderstorm': return '⛈️';
             case 'Snow': return '❄️';
-            case 'Mist':
-            case 'Fog':
-            case 'Haze': return '🌫️';
-            case 'Wind': return '💨';
+            case 'Mist': return '🌫️';
+            case 'Fog': return '🌁';
+            case 'Haze': return '�';
+            case 'Dust': return '💨';
+            case 'Sand': return '🏜️';
+            case 'Ash': return '🌋';
+            case 'Squall': return '🌪️';
+            case 'Tornado': return '🌪️';
             default: return '❓';
         }
     }
