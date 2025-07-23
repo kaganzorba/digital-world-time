@@ -54,7 +54,7 @@ Projede gerçek hava durumu verisi görmek için OpenWeatherMap API anahtarı ge
 ### 1. Proje açılmıyor veya boş sayfa geliyor
 - Tüm dosyaların aynı klasörde olduğundan emin ol.
 - Farklı bir tarayıcı (tercihen Chrome) ile dene.
-- Hâlâ açılmıyorsa Netlify Drop ile dene (yukarıda anlatıldı).
+- Hâlâ açılmıyorsa Netlify Drop ile dene.
 
 ### 2. Hava durumu verisi gelmiyor
 - API anahtarı eklemedin, bu normal. Sadece saatler çalışır.
@@ -76,5 +76,4 @@ Projede gerçek hava durumu verisi görmek için OpenWeatherMap API anahtarı ge
 3. Hava durumu için API anahtarı eklemek istersen script.js'yi düzenle.
 4. Olmazsa Chrome'a sürükle veya Netlify Drop kullan.
 
-Her şey buna rağmen çalışmazsa, hata mesajını geliştiriciye ilet.
 
